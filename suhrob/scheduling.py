@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from pytz import timezone
@@ -23,6 +24,7 @@ def send_collected_data():
     collected_data = {
         'en': ''.join(memory.seq),
         'ru': ''.join(map(RU, memory.seq)),
+        'date': str(datetime.now(tz=timezone(TIMEZONE))),
     }
     publisher.send(collected_data)
     memory.seq.clear()

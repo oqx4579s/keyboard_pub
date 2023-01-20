@@ -1,12 +1,24 @@
 import os
-from datetime import datetime
 
 import zmq
 import zmq.auth
-from pytz import timezone
-from zmq.auth.thread import ThreadAuthenticator
+from zmq.auth import thread
+from zmq.auth.base import Authenticator
 
-from suhrob.settings import AUTH_KEYS_PATH, PROTOCOL, HOST, PORT, TIMEZONE
+from suhrob.settings import AUTH_KEYS_PATH, PROTOCOL, HOST, PORT
+
+
+class AuthenticationThread(thread.AuthenticationThread):
+    def __init__(
+            self,
+            authenticator: Authenticator,
+            pipe: zmq.Socket,
+    ) -> None:
+        super().__init__(authenticator, pipe)
+        self.daemon = True
+
+
+thread.AuthenticationThread = AuthenticationThread
 
 
 class Publisher:
@@ -16,7 +28,7 @@ class Publisher:
 
         context = zmq.Context.instance()
 
-        auth = ThreadAuthenticator(context)
+        auth = thread.ThreadAuthenticator(context)
         auth.start()
         auth.configure_curve(domain='*', location=public_keys_dir)
 
@@ -32,8 +44,6 @@ class Publisher:
         self.__socket.bind('{}://{}:{}'.format(protocol, host, port))
 
     def send(self, payload: dict):
-        timestamp = datetime.timestamp(datetime.now(tz=timezone(TIMEZONE)))
-        payload['time'] = timestamp
         self.__socket.send_json(payload)
 
 

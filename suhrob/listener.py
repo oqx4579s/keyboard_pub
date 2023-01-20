@@ -11,9 +11,8 @@ from suhrob.storage import memory
 def on_press(key: Union[Enum, KeyCode]) -> None:
     if isinstance(key, Enum):
         key = key.value
-        if key.char is None:
-            return
-
+    if key.char is None:
+        return
     memory.last = time.time()
     memory.seq.append(key.char)
 
