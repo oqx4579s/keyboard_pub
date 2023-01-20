@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "suhrob"
+version = "0.1.0"
+description = ""
+authors = ["qwe"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pynput = "1.7.6"
+pyzmq = "25.0.0"
+APScheduler = "3.9.1.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
