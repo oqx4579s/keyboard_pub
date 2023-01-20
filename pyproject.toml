@@ -1,12 +1,13 @@
 [tool.poetry]
-name = "suhrob"
+name = "keyboard_pub"
 version = "0.1.0"
 description = ""
 authors = ["qwe"]
 readme = "README.md"
+packages = [{include = "keyboard_pub"}]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 pynput = "1.7.6"
 pyzmq = "25.0.0"
 APScheduler = "3.9.1.post1"

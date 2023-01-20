@@ -5,7 +5,7 @@ from typing import Union
 from pynput import keyboard
 from pynput.keyboard._xorg import KeyCode
 
-from suhrob.storage import memory
+from keyboard_pub.storage import memory
 
 
 def on_press(key: Union[Enum, KeyCode]) -> None:

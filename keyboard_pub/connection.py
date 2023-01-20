@@ -5,7 +5,7 @@ import zmq.auth
 from zmq.auth import thread
 from zmq.auth.base import Authenticator
 
-from suhrob.settings import AUTH_KEYS_PATH, PROTOCOL, HOST, PORT
+from keyboard_pub.settings import AUTH_KEYS_PATH, PROTOCOL, HOST, PORT
 
 
 class AuthenticationThread(thread.AuthenticationThread):

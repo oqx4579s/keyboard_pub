@@ -4,10 +4,10 @@ from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 from pytz import timezone
 
-from suhrob.connection import publisher
-from suhrob.settings import DELAY, TIMEZONE
-from suhrob.storage import memory
-from suhrob.translation import RU
+from keyboard_pub.connection import publisher
+from keyboard_pub.settings import DELAY, TIMEZONE
+from keyboard_pub.storage import memory
+from keyboard_pub.translation import RU
 
 job_defaults = {
     'coalesce': True,
