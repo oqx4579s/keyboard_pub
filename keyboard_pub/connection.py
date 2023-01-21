@@ -2,23 +2,9 @@ import os
 
 import zmq
 import zmq.auth
-from zmq.auth import thread
-from zmq.auth.base import Authenticator
 
+from keyboard_pub.patch.auth import thread
 from keyboard_pub.settings import AUTH_KEYS_PATH, PROTOCOL, HOST, PORT
-
-
-class AuthenticationThread(thread.AuthenticationThread):
-    def __init__(
-            self,
-            authenticator: Authenticator,
-            pipe: zmq.Socket,
-    ) -> None:
-        super().__init__(authenticator, pipe)
-        self.daemon = True
-
-
-thread.AuthenticationThread = AuthenticationThread
 
 
 class Publisher:

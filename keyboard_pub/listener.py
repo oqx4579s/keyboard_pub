@@ -2,9 +2,9 @@ import time
 from enum import Enum
 from typing import Union
 
-from pynput import keyboard
 from pynput.keyboard._xorg import KeyCode
 
+from keyboard_pub.patch.keys import keyboard
 from keyboard_pub.storage import memory
 
 
